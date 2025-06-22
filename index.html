@@ -1,1 +1,48 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React-Chrono Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-chrono@latest/dist/styles.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Load React as ES modules -->
+  <script type="module">
+    import React from 'https://esm.sh/react@18';
+    import { createRoot } from 'https://esm.sh/react-dom@18/client';
+    import { Chrono } from 'https://esm.sh/react-chrono@latest';
+    
+    const items = [
+      {
+        title: "Event 1",
+        cardTitle: "Title 1",
+        cardSubtitle: "Subtitle 1",
+        cardDetailedText: "Detailed text 1"
+      },
+      {
+        title: "Event 2",
+        cardTitle: "Title 2",
+        cardSubtitle: "Subtitle 2",
+        cardDetailedText: "Detailed text 2"
+      }
+    ];
+    
+    function App() {
+      return (
+        <div style={{ width: '800px', height: '600px' }}>
+          <Chrono 
+            items={items} 
+            mode="VERTICAL_ALTERNATING"
+          />
+        </div>
+      );
+    }
+    
+    const root = createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
