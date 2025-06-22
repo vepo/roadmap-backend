@@ -1,47 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React-Chrono Demo</title>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure JS Roadmap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+        
+        .roadmap-container {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #3498db;
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 4px solid #fff;
+        }
+        
+        .roadmap-date {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .roadmap-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .roadmap-description {
+            color: #666;
+        }
+        
+        .roadmap-milestone {
+            background: #e8f4fc;
+            border-left: 4px solid #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .roadmap-container {
+                padding-left: 30px;
+            }
+            
+            .roadmap-item::before {
+                left: -30px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
+    <h1>Project Roadmap</h1>
+    
+    <div class="roadmap-container">
+        <div class="timeline"></div>
+        <!-- Roadmap items will be inserted here by JavaScript -->
+        <div id="roadmap-items"></div>
+    </div>
 
-  <!-- Load React as ES modules -->
-  <script type="module">
-    import React from 'https://esm.sh/react@18';
-    import { createRoot } from 'https://esm.sh/react-dom@18/client';
-    import { Chrono } from 'https://esm.sh/react-chrono@latest';
-    
-    const items = [
-      {
-        title: "Event 1",
-        cardTitle: "Title 1",
-        cardSubtitle: "Subtitle 1",
-        cardDetailedText: "Detailed text 1"
-      },
-      {
-        title: "Event 2",
-        cardTitle: "Title 2",
-        cardSubtitle: "Subtitle 2",
-        cardDetailedText: "Detailed text 2"
-      }
-    ];
-    
-    function App() {
-      return (
-        <div style={{ width: '800px', height: '600px' }}>
-          <Chrono 
-            items={items} 
-            mode="VERTICAL_ALTERNATING"
-          />
-        </div>
-      );
-    }
-    
-    const root = createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+    <script>
+        // Roadmap data - you can modify this object
+        const roadmapData = {
+            title: "Product Development Roadmap",
+            items: [
+                {
+                    date: "Q1 2024",
+                    title: "Research & Planning",
+                    description: "Market research, competitor analysis, and initial product specifications.",
+                    type: "phase"
+                },
+                {
+                    date: "April 2024",
+                    title: "Prototype Development",
+                    description: "Build initial prototype with core functionality for testing.",
+                    type: "milestone"
+                },
+                {
+                    date: "Q2 2024",
+                    title: "User Testing",
+                    description: "Conduct user testing sessions and gather feedback on prototype.",
+                    type: "phase"
+                },
+                {
+                    date: "August 2024",
+                    title: "Beta Release",
+                    description: "Release beta version to select group of customers.",
+                    type: "milestone"
+                },
+                {
+                    date: "Q4 2024",
+                    title: "Official Launch",
+                    description: "Full public release with marketing campaign.",
+                    type: "milestone"
+                }
+            ]
+        };
+
+        // Function to render the roadmap
+        function renderRoadmap() {
+            const container = document.getElementById('roadmap-items');
+            
+            roadmapData.items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = `roadmap-item ${item.type === 'milestone' ? 'roadmap-milestone' : ''}`;
+                
+                itemElement.innerHTML = `
+                    <div class="roadmap-date">${item.date}</div>
+                    <div class="roadmap-title">${item.title}</div>
+                    <div class="roadmap-description">${item.description}</div>
+                `;
+                
+                container.appendChild(itemElement);
+            });
+        }
+
+        // Initialize the roadmap when the page loads
+        document.addEventListener('DOMContentLoaded', renderRoadmap);
+    </script>
 </body>
 </html>
