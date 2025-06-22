@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure JS Roadmap</title>
+    <title>Roadmap Jakarta EE - Aplicações Web</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -12,12 +12,17 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f5f5;
         }
         
         h1 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 40px;
+            background-color: #1565C0;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
         }
         
         .roadmap-container {
@@ -31,16 +36,22 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: #3498db;
+            background: #1565C0;
         }
         
         .roadmap-item {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding: 20px;
             border-radius: 8px;
-            background: #f9f9f9;
+            background: #ffffff;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .roadmap-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .roadmap-item::before {
@@ -51,31 +62,59 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #3498db;
-            border: 4px solid #fff;
+            background: #1565C0;
+            border: 4px solid #f5f5f5;
         }
         
-        .roadmap-date {
+        .roadmap-phase {
             font-weight: bold;
-            color: #3498db;
+            color: #1565C0;
             margin-bottom: 10px;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            text-transform: uppercase;
         }
         
         .roadmap-title {
             font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #2c3e50;
+            color: #0D47A1;
         }
         
         .roadmap-description {
-            color: #666;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .roadmap-tech {
+            display: inline-block;
+            background-color: #E3F2FD;
+            color: #1565C0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.8em;
+            font-weight: bold;
         }
         
         .roadmap-milestone {
-            background: #e8f4fc;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #1565C0;
+            background-color: #E3F2FD;
+        }
+        
+        .roadmap-resources {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .roadmap-resources a {
+            color: #1565C0;
+            text-decoration: none;
+        }
+        
+        .roadmap-resources a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
@@ -90,71 +129,151 @@
     </style>
 </head>
 <body>
-    <h1>Project Roadmap</h1>
+    <h1>Roadmap de Aprendizado - Jakarta EE (Aplicações Web)</h1>
     
     <div class="roadmap-container">
         <div class="timeline"></div>
-        <!-- Roadmap items will be inserted here by JavaScript -->
         <div id="roadmap-items"></div>
     </div>
 
     <script>
-        // Roadmap data - you can modify this object
+        // Roadmap de aprendizado para Jakarta EE
         const roadmapData = {
-            title: "Product Development Roadmap",
+            title: "Jakarta EE - Desenvolvimento de Aplicações Web",
             items: [
                 {
-                    date: "Q1 2024",
-                    title: "Research & Planning",
-                    description: "Market research, competitor analysis, and initial product specifications.",
-                    type: "phase"
+                    phase: "FUNDAMENTOS",
+                    title: "Java SE (Core Java)",
+                    description: "Domine os fundamentos da linguagem Java antes de partir para o EE",
+                    technologies: ["Java 11+", "OOP", "Collections", "Streams", "Lambda"],
+                    resources: [
+                        {name: "Oracle Java Tutorials", url: "https://docs.oracle.com/javase/tutorial/"},
+                        {name: "Effective Java (Joshua Bloch)", url: "https://www.amazon.com.br/Effective-Java-Joshua-Bloch/dp/8550804627"}
+                    ],
+                    type: "foundation"
                 },
                 {
-                    date: "April 2024",
-                    title: "Prototype Development",
-                    description: "Build initial prototype with core functionality for testing.",
+                    phase: "FUNDAMENTOS",
+                    title: "Servlet API & JSP",
+                    description: "Entenda os componentes básicos de aplicações web Java",
+                    technologies: ["Servlets", "JSP", "JSTL", "Filters", "Sessions"],
+                    resources: [
+                        {name: "Jakarta Servlet Documentation", url: "https://jakarta.ee/specifications/servlet/"},
+                        {name: "Java Web (Alura)", url: "https://www.alura.com.br/formacao-java-web"}
+                    ],
+                    type: "foundation"
+                },
+                {
+                    phase: "JAKARTA EE CORE",
+                    title: "JAX-RS (RESTful Web Services)",
+                    description: "Desenvolva APIs RESTful com o padrão Jakarta EE",
+                    technologies: ["JAX-RS", "REST", "JSON-B", "JSON-P", "OpenAPI"],
+                    resources: [
+                        {name: "Eclipse Jersey (Implementação)", url: "https://eclipse-ee4j.github.io/jersey/"},
+                        {name: "REST with Java (Baeldung)", url: "https://www.baeldung.com/rest-with-spring-series"}
+                    ],
                     type: "milestone"
                 },
                 {
-                    date: "Q2 2024",
-                    title: "User Testing",
-                    description: "Conduct user testing sessions and gather feedback on prototype.",
-                    type: "phase"
+                    phase: "JAKARTA EE CORE",
+                    title: "Contexts and Dependency Injection (CDI)",
+                    description: "Padrão de injeção de dependência do Jakarta EE",
+                    technologies: ["CDI", "Beans", "Scopes", "Qualifiers", "Events"],
+                    resources: [
+                        {name: "Jakarta CDI Spec", url: "https://jakarta.ee/specifications/cdi/"},
+                        {name: "CDI Tutorial (Thorntail)", url: "https://thorntail.io/documentation/"}
+                    ],
+                    type: "core"
                 },
                 {
-                    date: "August 2024",
-                    title: "Beta Release",
-                    description: "Release beta version to select group of customers.",
+                    phase: "PERSISTÊNCIA",
+                    title: "Jakarta Persistence (JPA)",
+                    description: "Padrão ORM para persistência de dados",
+                    technologies: ["JPA", "Hibernate", "Entities", "JPQL", "Relationships"],
+                    resources: [
+                        {name: "Jakarta Persistence Spec", url: "https://jakarta.ee/specifications/persistence/"},
+                        {name: "Hibernate ORM", url: "https://hibernate.org/orm/"}
+                    ],
                     type: "milestone"
                 },
                 {
-                    date: "Q4 2024",
-                    title: "Official Launch",
-                    description: "Full public release with marketing campaign.",
+                    phase: "PERSISTÊNCIA",
+                    title: "Bean Validation",
+                    description: "Validação de dados em camadas de negócio e persistência",
+                    technologies: ["Bean Validation", "Constraints", "Custom Validators"],
+                    resources: [
+                        {name: "Jakarta Validation Spec", url: "https://jakarta.ee/specifications/bean-validation/"}
+                    ],
+                    type: "core"
+                },
+                {
+                    phase: "SEGURANÇA",
+                    title: "Jakarta Security",
+                    description: "Autenticação e autorização em aplicações Jakarta EE",
+                    technologies: ["Security API", "OAuth", "JWT", "Roles", "Permissions"],
+                    resources: [
+                        {name: "Jakarta Security Spec", url: "https://jakarta.ee/specifications/security/"}
+                    ],
+                    type: "advanced"
+                },
+                {
+                    phase: "AVANÇADO",
+                    title: "MicroProfile",
+                    description: "Extensão do Jakarta EE para microservices",
+                    technologies: ["Config", "Fault Tolerance", "Health Checks", "Metrics", "OpenTracing"],
+                    resources: [
+                        {name: "Eclipse MicroProfile", url: "https://microprofile.io/"}
+                    ],
+                    type: "advanced"
+                },
+                {
+                    phase: "PRÁTICA",
+                    title: "Projeto Completo",
+                    description: "Implemente uma aplicação completa com todos os conceitos aprendidos",
+                    technologies: ["Jakarta EE", "JAX-RS", "JPA", "CDI", "Security"],
+                    resources: [
+                        {name: "Jakarta EE Examples", url: "https://github.com/eclipse-ee4j/jakartaee-examples"}
+                    ],
                     type: "milestone"
                 }
             ]
         };
 
-        // Function to render the roadmap
+        // Função para renderizar o roadmap
         function renderRoadmap() {
             const container = document.getElementById('roadmap-items');
             
             roadmapData.items.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.className = `roadmap-item ${item.type === 'milestone' ? 'roadmap-milestone' : ''}`;
+                const isMilestone = item.type === 'milestone';
+                
+                itemElement.className = `roadmap-item ${isMilestone ? 'roadmap-milestone' : ''}`;
+                
+                // Renderizar tecnologias
+                const techElements = item.technologies.map(tech => 
+                    `<span class="roadmap-tech">${tech}</span>`
+                ).join('');
+                
+                // Renderizar recursos
+                const resourceElements = item.resources.map(res => 
+                    `<a href="${res.url}" target="_blank">${res.name}</a>`
+                ).join(', ');
                 
                 itemElement.innerHTML = `
-                    <div class="roadmap-date">${item.date}</div>
+                    <div class="roadmap-phase">${item.phase}</div>
                     <div class="roadmap-title">${item.title}</div>
                     <div class="roadmap-description">${item.description}</div>
+                    <div>${techElements}</div>
+                    <div class="roadmap-resources">
+                        <strong>Recursos:</strong> ${resourceElements}
+                    </div>
                 `;
                 
                 container.appendChild(itemElement);
             });
         }
 
-        // Initialize the roadmap when the page loads
+        // Inicializar o roadmap quando a página carregar
         document.addEventListener('DOMContentLoaded', renderRoadmap);
     </script>
 </body>
